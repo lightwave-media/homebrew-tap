@@ -1,0 +1,66 @@
+# Hook gates for the LightWave Homebrew tap.
+#
+# Tier discipline:
+#   pre-commit (fast, every commit): brew style, file hygiene, test-block check
+#   pre-push (slow, network): brew audit --strict --new-formula + --online
+#
+# Formula files in Formula/*.rb are GoReleaser-generated. Hooks here verify
+# the generated output is well-formed before it's distributed to users.
+
+repos:
+  # ============================================================================
+  # FILE HYGIENE
+  # ============================================================================
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+        args: [--maxkb=1000]
+      - id: check-merge-conflict
+      - id: detect-private-key
+
+  # ============================================================================
+  # FORMULA VALIDATION (pre-commit — fast, no network)
+  # ============================================================================
+  - repo: local
+    hooks:
+      - id: brew-style
+        name: brew style Formula/*.rb
+        entry: brew style
+        language: system
+        files: ^Formula/.*\.rb$
+        stages: [pre-commit]
+
+      - id: formula-test-block-required
+        name: every Formula/*.rb has a `test do` block
+        entry: bash scripts/check-test-block.sh
+        language: system
+        files: ^Formula/.*\.rb$
+        pass_filenames: true
+        stages: [pre-commit]
+
+  # ============================================================================
+  # FORMULA AUDIT (pre-push — slow, needs network for --online)
+  # ============================================================================
+  - repo: local
+    hooks:
+      - id: brew-audit-strict
+        name: brew audit --strict --new-formula
+        entry: bash scripts/brew-audit-strict.sh
+        language: system
+        files: ^Formula/.*\.rb$
+        pass_filenames: true
+        stages: [pre-push]
+
+      - id: brew-audit-online
+        name: brew audit --online (URL liveness)
+        entry: bash scripts/brew-audit-online.sh
+        language: system
+        files: ^Formula/.*\.rb$
+        pass_filenames: true
+        stages: [pre-push]
+
+default_stages: [pre-commit]
