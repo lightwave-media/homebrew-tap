@@ -5,21 +5,21 @@
 class Lw < Formula
   desc "LightWave CLI - Task management and platform operations"
   homepage "https://github.com/lightwave-media/lightwave-cli"
-  version "2.11.0"
+  version "3.2.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v2.11.0/lightwave-cli_2.11.0_darwin_amd64.tar.gz"
-      sha256 "533ea1eb18d5cfbf3984a6bb058cf9d058900f22fff95571cf2308fe9a26ce32"
+      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v3.2.0/lightwave-cli_3.2.0_darwin_amd64.tar.gz"
+      sha256 "d041ff348036179c99066596690c15992b53413302e7d2bfc00e25ae1c6f5334"
 
       define_method(:install) do
         bin.install "lw"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v2.11.0/lightwave-cli_2.11.0_darwin_arm64.tar.gz"
-      sha256 "9706a2569bcc521bf823c369dd1695266a4e1f2250efda957cc3bc7fc151440c"
+      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v3.2.0/lightwave-cli_3.2.0_darwin_arm64.tar.gz"
+      sha256 "543d60cbfe903fbd04a81aa7c9ba942114169b4d1bdd21755ab2db5a1f80ae0d"
 
       define_method(:install) do
         bin.install "lw"
@@ -28,23 +28,21 @@ class Lw < Formula
   end
 
   on_linux do
-    if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v2.11.0/lightwave-cli_2.11.0_linux_amd64.tar.gz"
-      sha256 "016cc730731d3292e08a747523ae5e79da01194008789c655a2898fed6fb54a1"
-      define_method(:install) do
-        bin.install "lw"
-      end
-    end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v2.11.0/lightwave-cli_2.11.0_linux_arm64.tar.gz"
-      sha256 "0b866bf8782f3088735d722b45d1be169887fc280e9fde71878f37bf88c915e4"
-      define_method(:install) do
-        bin.install "lw"
-      end
-    end
-  end
+    if Hardware::CPU.intel?
+      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v3.2.0/lightwave-cli_3.2.0_linux_amd64.tar.gz"
+      sha256 "517a5714018a06f5e0aefdf8fe4d405fb4dd3822ac10765e72a9c6c13d823a02"
 
-  test do
-    assert_match "lw version", shell_output("#{bin}/lw version")
+      define_method(:install) do
+        bin.install "lw"
+      end
+    end
+    if Hardware::CPU.arm?
+      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v3.2.0/lightwave-cli_3.2.0_linux_arm64.tar.gz"
+      sha256 "c1bcefd28bf57a883cfe82ab5b7ac3d7b763d900cca8d33fad2a93effdc1b97a"
+
+      define_method(:install) do
+        bin.install "lw"
+      end
+    end
   end
 end
