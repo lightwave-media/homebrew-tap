@@ -5,21 +5,21 @@
 class Lw < Formula
   desc "LightWave CLI - Task management and platform operations"
   homepage "https://github.com/lightwave-media/lightwave-cli"
-  version "3.13.0"
+  version "3.14.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v3.13.0/lightwave-cli_3.13.0_darwin_amd64.tar.gz"
-      sha256 "61b32fb225a5d34c9f4fd66229b2947cf01249b82f4dc4d640713056d78957f3"
+      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v3.14.0/lightwave-cli_3.14.0_darwin_amd64.tar.gz"
+      sha256 "50ee30ae5e1f07d8fe5cc82386939564f42d6f2e5ebb2aa93cc891053a36be3a"
 
       define_method(:install) do
         bin.install "lw"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v3.13.0/lightwave-cli_3.13.0_darwin_arm64.tar.gz"
-      sha256 "54a3d5f97a5056a33583f33d1f622db4d06893902ec62fae9c9e00a2d88c0a91"
+      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v3.14.0/lightwave-cli_3.14.0_darwin_arm64.tar.gz"
+      sha256 "77710aefd965988ec6f5b9a27a66e9a9c6e6d1ba8c4bf00adefd00eb395d0aa3"
 
       define_method(:install) do
         bin.install "lw"
@@ -29,15 +29,15 @@ class Lw < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v3.13.0/lightwave-cli_3.13.0_linux_amd64.tar.gz"
-      sha256 "d1f299699d2e5862d4a4a3bd9d1769aad13d6094ac54e98f3a9e582a7ade6e5c"
+      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v3.14.0/lightwave-cli_3.14.0_linux_amd64.tar.gz"
+      sha256 "22037a7ce8f2fbe9f937f70251af0d1536de9ffa51ba22c73c43dc872643ad2c"
       define_method(:install) do
         bin.install "lw"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v3.13.0/lightwave-cli_3.13.0_linux_arm64.tar.gz"
-      sha256 "f513c43c96c917aac3bbe45006a6c46f6a9bc55b941bbf7501d35086254d1046"
+      url "https://github.com/lightwave-media/lightwave-cli/releases/download/v3.14.0/lightwave-cli_3.14.0_linux_arm64.tar.gz"
+      sha256 "5b26e14e6af0c99e138a8cb673c30872a4e2a14b279980bc5b5875d28b7f8d35"
       define_method(:install) do
         bin.install "lw"
       end
